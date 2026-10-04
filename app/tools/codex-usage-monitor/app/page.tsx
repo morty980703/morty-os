@@ -1,0 +1,3 @@
+import Link from 'next/link';
+export const metadata={title:'Codex Usage Monitor — 演示外壳',robots:{index:false,follow:false}};
+export default function AppShell(){return <section className="app-shell"><Link href="/tools/codex-usage-monitor">← 工具详情</Link><div className="section-head"><span>APP MODE / CODEX USAGE MONITOR</span><span className="badge">DEMO STATE</span></div><h1>等待真实数据接入。</h1><p>这是工具的演示外壳。未读取账号、未请求凭据，也没有生成模拟用量。</p><div className="empty"><span className="eyebrow">IDLE / NO DATA</span><h2>还没有可展示的用量信息</h2><p>数据来源、刷新方式与可用功能将在验证后补充。</p></div><Link className="text-link" href="/builds/codex-usage-monitor">查看构建记录 ↗</Link></section>}

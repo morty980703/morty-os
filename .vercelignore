@@ -1,0 +1,15 @@
+qa/
+docs/
+scripts/
+.git/
+.next/
+node_modules/
+.env*
+AGENTS.md
+README.md
+01_REAL_MORTY_MASTER.png.png
+02_GLASS_LIQUID_MASTER.png.png
+03_LOW_BOX_HERO.png.png
+04_CONTAINER_PHYSICS.png.png
+05_LIQUID_IDENTITY_TEST.png.png
+*.tsbuildinfo

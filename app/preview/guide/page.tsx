@@ -1,0 +1,10 @@
+'use client';
+
+import {useState} from 'react';
+import Link from 'next/link';
+const options=[
+  {label:'找工具',message:'目前还没有可用工具。我先带你看看正在准备什么，以及它的限制。',title:'Codex Usage Monitor',description:'计划帮助查看 Codex 用量。数据来源尚待验证，当前仅有演示外壳。',status:'开发计划 · 暂不可用',href:'/tools/codex-usage-monitor',reason:'这是本站当前唯一的工具计划，明确标注状态，避免你误以为可以直接使用。'},
+  {label:'看实践',message:'想带走一点能复用的经验？可以从这篇真实的首页迭代笔记开始。',title:'还没有落地工具，个人网站应该展示什么？',description:'区分已完成成果和开发计划，减少重复展示，让每个入口兑现承诺。',status:'可阅读 · 实践笔记',href:'/notes/building-an-honest-homepage',reason:'这篇笔记有具体设计判断和可复用检查方法，不依赖尚未实现的监控器。'},
+  {label:'看项目',message:'先看看已经做出来的，再了解正在验证的。这个网站本身就是一个正在迭代的项目。',title:'Morty OS',description:'已上线内容浏览、搜索与移动布局，继续根据实际使用反馈迭代。',status:'首版已发布',href:'/builds/morty-os',reason:'你正在使用这个项目，可以直接对照页面与实现记录判断它做到了什么。'},
+];
+export default function GuidePreview(){const [selected,setSelected]=useState(1);const item=options[selected];return <div className="guide-preview"><section className="intro"><span className="eyebrow">交互方案预览 · 尚未加入首页</span><h1>想先看点什么？</h1><p>选一个方向，Morty 帮你找到下一步。</p></section><section className="guide-panel"><div className="guide-speaker"><span className="guide-avatar" aria-hidden="true"/><div><strong>Morty</strong><span>你的站内向导</span></div><span className="guide-note">按现有内容引导</span></div><div className="guide-options" role="group" aria-label="选择浏览方向">{options.map((option,index)=><button type="button" key={option.label} aria-pressed={selected===index} onClick={()=>setSelected(index)}>{option.label}<span aria-hidden="true"> ↗</span></button>)}</div><div className="guide-result" aria-live="polite" aria-atomic="true"><p className="guide-message">{item.message}</p><div className="guide-recommendation"><span className="badge">{item.status}</span><h2>{item.title}</h2><p>{item.description}</p><Link className="button" href={item.href}>前往查看 ↗</Link><p className="guide-reason"><strong>为什么推荐</strong><br/>{item.reason}</p></div></div><p className="guide-disclosure">这是基于本站现有内容的固定引导，不是 AI 对话。你也可以直接通过导航浏览。</p></section><div className="guide-back"><Link className="text-link" href="/">回到当前首页 ↗</Link></div></div>}
