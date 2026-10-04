@@ -6,6 +6,8 @@ import { note, build, tool, entries } from '../../../lib/content';
 import { prompts, promptNotice } from '../../../lib/content/prompts';
 import PromptCards from '../../../components/tools/prompt-cards';
 import styles from '../../../components/tools/prompts.module.css';
+import { skills } from '../../../lib/content/skills';
+import SkillCard from '../../../components/tools/skill-card';
 export function generateStaticParams() { return entries.map(e => ({ kind: e.kind, slug: e.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ kind: string; slug: string }> }): Promise<Metadata> {
   const p = await params;
@@ -16,6 +18,11 @@ export default async function Detail({ params }: { params: Promise<{ kind: strin
   const { kind, slug } = await params;
   const e = entries.find(e => e.kind === kind && e.slug === slug);
   if (!e) notFound();
+  if (kind === 'tools' && 'category' in e && e.category === 'skill') {
+    const skill = skills.find(s => s.slug === slug);
+    if (!skill) notFound();
+    return <div className="skill-preview"><Link className="eyebrow" href="/tools?category=skill">← 技能 · 第三方分享</Link><SkillCard entry={skill} /></div>;
+  }
   if (kind === 'tools' && 'category' in e && e.category === 'prompt') {
     const prompt = prompts.find(p => `prompt-${p.id}` === slug);
     if (!prompt) notFound();
