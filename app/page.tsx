@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import { prompts } from '../lib/content/prompts';
+import { entries } from '../lib/content';
 import PonytailAvatar from '../components/tools/ponytail-avatar';
-export default function Home() { return <div className="home-v2">
+export default function Home() {
+  const skillCount = entries.filter(e => e.kind === 'tools' && 'category' in e && e.category === 'skill').length;
+  const featuredNotes = ['choosing-your-first-skill', 'building-an-honest-homepage'].map(slug => entries.find(e => e.kind === 'notes' && e.slug === slug && 'editorialStatus' in e && e.editorialStatus === 'ready')).filter(e => e !== undefined);
+  return <div className="home-v2">
   <section className="intro">
     <span className="eyebrow">MORTY OS · AI × REAL BUSINESS</span>
     <h1>做出来的项目。<br /><em>用得上的经验。</em></h1>
@@ -22,9 +26,9 @@ export default function Home() { return <div className="home-v2">
         <span className="text-link">查看用法与复制 ↗</span>
       </Link>
     </div>
-    <div className="home-tool-links"><Link className="text-link" href="/tools?category=skill">浏览技能 ↗</Link><Link className="text-link" href="/tools?category=prompt">探索 6 个提示词用法 ↗</Link></div>
+    <div className="home-tool-links"><Link className="text-link" href="/tools?category=skill">浏览 {skillCount} 项技能 ↗</Link><Link className="text-link" href="/tools?category=prompt">探索 {prompts.length} 个提示词用法 ↗</Link></div>
   </section>
   <section id="projects" className="home-section"><div className="home-heading"><div><span className="eyebrow">PROJECTS</span><h2>已经做出来的。</h2></div><Link className="text-link" href="/builds">全部项目 ↗</Link></div><Link className="project-tile featured-project" href="/builds/morty-os"><div><span className="badge">首版已发布</span><h3>Morty OS</h3><p>分享工具、AI 用法与实践记录的个人网站。已上线内容浏览、搜索、技能与提示词分享，并适配手机与桌面。</p><span className="text-link">查看实现与当前状态 ↗</span></div><div className="project-facts"><span>已实现</span><strong>内容浏览 / 搜索 / 移动适配</strong><span>当前阶段</span><strong>首版上线，持续迭代</strong></div></Link></section>
-  <section id="blog" className="home-section"><div className="home-heading"><div><span className="eyebrow">BLOG</span><h2>从这次实践里，带走一点经验。</h2></div><Link className="text-link" href="/notes">全部文章 ↗</Link></div><Link className="blog-feature" href="/notes/building-an-honest-homepage"><span className="eyebrow">网站设计 · 实践笔记</span><h3>还没有落地工具，个人网站应该展示什么？</h3><p>从 Morty OS 的首页调整出发：先展示已有成果，把开发计划和可用工具分开，让每个入口准确说明能看到什么。</p><span className="text-link">阅读这次调整的经验 ↗</span></Link></section>
+  <section id="blog" className="home-section"><div className="home-heading"><div><span className="eyebrow">BLOG</span><h2>从这次实践里，带走一点经验。</h2></div><Link className="text-link" href="/notes">全部文章 ↗</Link></div><div className="project-grid">{featuredNotes.map(note => <Link className="blog-feature" href={`/notes/${note.slug}`} key={note.slug}><span className="eyebrow">{note.tags[0]} · 实践笔记</span><h3>{note.title}</h3><p>{note.summary}</p><span className="text-link">阅读全文 ↗</span></Link>)}</div></section>
   <section className="home-about"><h2>做东西。做生意。<br />记录真正有用的。</h2><Link className="text-link" href="/about">认识 Morty OS ↗</Link></section>
 </div>; }
