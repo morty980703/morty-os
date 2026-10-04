@@ -28,7 +28,7 @@ export default function Note() {
         <li>把测试条件与来源保留下来，缺少资料的部分标明待补充。</li>
       </ol>
       <h2>这份记录的边界</h2>
-      <p>这是 Morty OS 本地迭代的实践记录。功能与布局已做工程检查，整体视觉仍待作者审核；尚无访客使用或业务效果数据。这些设计决定的效果，需要后续真实使用来验证。</p>
+      <p>这是 Morty OS 首版迭代的实践记录。功能与布局已做工程检查，作者已完成内容与视觉审核，网站于 2026-10-04 上线；尚无访客使用或业务效果数据。这些设计决定的效果，需要后续真实使用来验证。</p>
     </div>
     <aside className="relations"><Link href="/builds/morty-os">相关项目 · Morty OS ↗</Link><Link href="/tools">看看这次整理的技能与用法 ↗</Link><Link href="/notes">回到全部文章 ↗</Link></aside>
   </article>;
