@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { siteURL } from '../lib/site';
 
 export const alt = 'Morty OS — AI × REAL BUSINESS，工具、项目与实践笔记';
 export const size = { width: 1200, height: 630 };
@@ -13,7 +14,7 @@ export default async function ShareImage() {
       <div style={{ fontSize: 22, letterSpacing: 3, color: '#626268' }}>AI × REAL BUSINESS</div>
       <div style={{ fontSize: 88, fontWeight: 700, letterSpacing: -4, marginTop: 28 }}>Morty OS</div>
       <div style={{ fontSize: 28, color: '#0067cc', marginTop: 26 }}>TOOLS / PROJECTS / NOTES</div>
-      <div style={{ fontSize: 22, color: '#626268', marginTop: 64 }}>morty-os.vercel.app</div>
+      <div style={{ fontSize: 20, color: '#626268', marginTop: 64 }}>{siteURL.host}</div>
     </div>
     <div style={{ display: 'flex', position: 'relative', width: 300, height: 300, borderRadius: 64, overflow: 'hidden', background: '#eee9e3' }}>
       {/* Canonical asset, proportional framing only; no replacement character. */}

@@ -2,7 +2,7 @@
 
 分享技能、AI 用法、项目与实践笔记的个人网站。
 
-网站：https://morty-os.vercel.app
+网站：新账号部署地址确认后更新。
 作者：https://github.com/morty980703
 
 ## 本地运行

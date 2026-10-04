@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteURL } from '../../../lib/site';
 export const metadata = { title: 'Morty OS — 项目记录', description: 'Morty OS 已实现的内容浏览、技能与提示词分享、搜索、移动适配，以及当前验证与源码状态。' };
 export default function Project() {
   return <article className="article">
@@ -29,7 +30,7 @@ export default function Project() {
       <p>内容保存在本地文件中，页面使用 Next.js、TypeScript 和 MDX。站点已完成代码检查、类型检查、生产构建，以及页面链接、复制操作、搜索和手机／桌面深浅主题检查。</p>
       <p>这些检查验证的是网站功能与展示。Ponytail 的节省数字来自作者测试，提示词反馈来自社区原文；它们保留各自的条件与来源。</p>
       <h2>当前状态</h2>
-      <p>第一版已通过作者审核并公开上线，访问地址为 <a className="text-link" href="https://morty-os.vercel.app">morty-os.vercel.app ↗</a>。尚无经验证的使用或业务效果数据。Codex 用量监控器仍是开发计划，本站的演示外壳尚未接入真实数据。</p>
+      <p>第一版已通过作者审核并公开上线，访问地址为 <a className="text-link" href={siteURL.origin}>{siteURL.host} ↗</a>。尚无经验证的使用或业务效果数据。Codex 用量监控器仍是开发计划，本站的演示外壳尚未接入真实数据。</p>
       <h2>本站源码</h2>
       <p>本站源码已公开：<a className="text-link" href="https://github.com/morty980703/morty-os" target="_blank" rel="noopener noreferrer">morty980703/morty-os ↗</a>。运行方式见仓库说明；<a className="text-link" href="https://github.com/morty980703/morty-os/issues/new/choose" target="_blank" rel="noopener noreferrer">提交问题与建议 ↗</a>。第三方技能的安装与来源入口位于各自详情页。</p>
       <h2>后续迭代</h2>
