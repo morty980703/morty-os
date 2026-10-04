@@ -2,7 +2,7 @@
 
 分享技能、AI 用法、项目与实践笔记的个人网站。
 
-网站：https://morty-os-morty4.vercel.app
+网站：https://morty-os-wine.vercel.app
 作者：https://github.com/morty980703
 
 ## 本地运行
