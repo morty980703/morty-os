@@ -15,7 +15,7 @@ export default function About() {
     <p className="author-pending">资料待补充：个人经历与经营案例尚未提供，待作者确认后整理。</p>
     <h2>联系与反馈</h2>
     <p>在 GitHub 关注后续项目与更新：<a className="text-link" href="https://github.com/morty980703" target="_blank" rel="noopener noreferrer">@morty980703 ↗</a></p>
-    <p className="author-pending">问题反馈入口待补充。</p>
+    <p>遇到页面问题、失效链接，或有使用建议？<a className="text-link" href="https://github.com/morty980703/morty-os/issues/new/choose" target="_blank" rel="noopener noreferrer">提交问题与建议 ↗</a>（需要登录 GitHub）</p>
     <div className="about-links"><Link className="text-link" href="/tools">浏览工具与用法 ↗</Link><Link className="text-link" href="/builds/morty-os">了解本站项目 ↗</Link></div>
   </div><Image src="/morty/real/morty-real-master.png" alt="Morty 开发者虚拟形象" width={1024} height={1024} sizes="(max-width:700px) 100vw, 40vw" style={{ width: '100%', height: 'auto' }} /></section>;
 }

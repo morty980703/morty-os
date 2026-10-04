@@ -31,9 +31,9 @@ export default function Project() {
       <h2>当前状态</h2>
       <p>第一版已通过作者审核并公开上线，访问地址为 <a className="text-link" href="https://morty-os.vercel.app">morty-os.vercel.app ↗</a>。尚无经验证的使用或业务效果数据。Codex 用量监控器仍是开发计划，本站的演示外壳尚未接入真实数据。</p>
       <h2>本站源码</h2>
-      <p>GitHub 仓库尚未绑定，暂未提供本站源码下载或安装入口。代码保存在本地 Git 仓库。第三方技能的安装与来源入口位于各自详情页。</p>
+      <p>本站源码已公开：<a className="text-link" href="https://github.com/morty980703/morty-os" target="_blank" rel="noopener noreferrer">morty980703/morty-os ↗</a>。运行方式见仓库说明；<a className="text-link" href="https://github.com/morty980703/morty-os/issues/new/choose" target="_blank" rel="noopener noreferrer">提交问题与建议 ↗</a>。第三方技能的安装与来源入口位于各自详情页。</p>
       <h2>后续迭代</h2>
-      <p>根据实际使用反馈更新内容。自定义域名与本站源码公开入口仍待确认；个人资料与监控器证据继续保留待补充标记。</p>
+      <p>根据实际使用反馈更新内容。自定义域名仍待确认；个人资料与监控器证据继续保留待补充标记。</p>
     </div>
     <aside className="relations"><Link href="/notes/building-an-honest-homepage">相关笔记 · 还没有落地工具，个人网站应该展示什么？ ↗</Link><Link href="/tools?category=skill">查看技能 ↗</Link><Link href="/tools?category=prompt">查看提示词用法 ↗</Link><Link href="/">回到首页 ↗</Link></aside>
   </article>;
