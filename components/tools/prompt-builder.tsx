@@ -15,13 +15,14 @@ export default function PromptBuilder({ preview = false, initialScene = 'video' 
   const [sceneId, setSceneId] = useState(() => scenes.some(item => item.id === initialScene) ? initialScene : 'video');
   const [need, setNeed] = useState('');
   const [conditions, setConditions] = useState(['', '']);
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState({ text: '', message: '' });
   const output = useRef<HTMLTextAreaElement>(null);
   const scene = scenes.find(item => item.id === sceneId)!;
   const source = prompts.find(item => item.id === sceneId)!;
-  useEffect(() => { if (result) output.current?.focus(); }, [result]);
-  function invalidate() { setResult(''); setCopyStatus({ text: '', message: '' }); }
+  const hasResult = result !== null;
+  useEffect(() => { if (hasResult) output.current?.focus(); }, [hasResult]);
+  function invalidate() { setResult(null); setCopyStatus({ text: '', message: '' }); }
 
   function generate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,11 +38,12 @@ export default function PromptBuilder({ preview = false, initialScene = 'video' 
     } else {
       text = `我的情况：${task}\n尝试情况：${first}\n我希望最后得到：${second}\n\n请先通过提问了解背景，确认我的目标和限制，再帮我找到可执行的下一步。每次只问一个问题，等我回答后再继续；区分已知事实、假设与建议。`;
     }
-    setResult(text); setCopyStatus({ text: '', message: '' });
+    setResult(text); setCopyStatus({ text: '', message: '' }); output.current?.focus();
   }
 
   async function copy() {
     const text = result;
+    if (!text?.trim()) return;
     try { await navigator.clipboard.writeText(text); setCopyStatus({ text, message: '已复制' }); }
     catch { setCopyStatus({ text, message: '复制失败，请在文本框内全选并手动复制。' }); output.current?.focus(); output.current?.select(); }
   }
@@ -67,10 +69,10 @@ export default function PromptBuilder({ preview = false, initialScene = 'video' 
       </form>
       <div className={styles.resultPanel}>
         <div className={styles.resultHeading}><h2>03 / 你的提示词</h2><span>本地模板组合</span></div>
-        {!result && <p className={styles.waiting}>写下需求，点击「整理成提示词」，即可查看并复制完整文本。</p>}
-        <textarea className={styles.output} ref={output} aria-label="整理后的提示词" readOnly value={result} hidden={!result} />
-        <div className={styles.resultActions}><span role="status" aria-live="polite">{result ? copyStatus.text === result && copyStatus.message ? copyStatus.message : '已整理，可复制后继续调整。' : '等待你写下需求。'}</span><button type="button" className={styles.primary} onClick={copy} disabled={!result}>复制提示词</button></div>
-        {result && <p className={styles.usage}>复制到你常用的 AI 对话里。{sceneId === 'video' ? '发送前，把「资料」处的占位文字换成资料正文。' : '发送后，根据 AI 的提问补充回答。'}</p>}
+        {!hasResult && <p className={styles.waiting}>写下需求，点击「整理成提示词」，即可查看、修改并复制完整文本。</p>}
+        <textarea className={styles.output} ref={output} aria-label="整理后的提示词" aria-describedby={hasResult ? 'prompt-edit-help' : undefined} maxLength={10000} value={result ?? ''} hidden={!hasResult} onChange={event => { setResult(event.target.value); setCopyStatus({ text: '', message: '' }); }} />
+        <div className={styles.resultActions}><span role="status" aria-live="polite">{hasResult ? copyStatus.text === result && copyStatus.message ? copyStatus.message : result?.trim() ? '可直接修改，满意后复制。' : '内容已清空，可继续输入。' : '等待你写下需求。'}</span><button type="button" className={styles.primary} onClick={copy} disabled={!result?.trim()}>复制提示词</button></div>
+        {hasResult && <p id="prompt-edit-help" className={styles.usage}>重新整理会替换当前内容。复制到你常用的 AI 对话里。{sceneId === 'video' ? '发送前，把「资料」处的占位文字换成资料正文。' : '发送后，根据 AI 的提问补充回答。'}</p>}
         <details className={styles.source}>
           <summary>参考来源与使用条件</summary>
           <p>{source.credit}。基于社区用法，补充条件由本站整理；改编内容尚未实测。</p>
