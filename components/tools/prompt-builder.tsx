@@ -11,8 +11,8 @@ const scenes = [
   { id: 'clarify', name: '梳理想法', hint: '把背景问清楚，再找下一步。', example: '我想开始做内容，但总是拿不定主意先做哪个主题。', labels: ['已经尝试过什么？', '希望最后得到什么？'], placeholders: ['例如：列过选题清单，仍然无法取舍', '例如：确定一个主题和第一步'], defaults: ['暂时没有明确尝试，请先问清情况', '清晰的问题描述和可执行的下一步'], values: ['列过选题清单，但每个都想做', '确定一个适合先尝试的主题和第一步'] },
 ];
 
-export default function PromptBuilder({ preview = false }: { preview?: boolean }) {
-  const [sceneId, setSceneId] = useState('video');
+export default function PromptBuilder({ preview = false, initialScene = 'video' }: { preview?: boolean; initialScene?: string }) {
+  const [sceneId, setSceneId] = useState(() => scenes.some(item => item.id === initialScene) ? initialScene : 'video');
   const [need, setNeed] = useState('');
   const [conditions, setConditions] = useState(['', '']);
   const [result, setResult] = useState('');

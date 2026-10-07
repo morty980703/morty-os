@@ -51,7 +51,7 @@ function PromptCard({ entry, index, detailLinks, detail }: { entry: PromptEntry;
         <a href={entry.source} target="_blank" rel="noreferrer">原文与讨论 ↗</a>
         <button type="button" onClick={copy}>复制这个用法 <span aria-hidden="true">↗</span></button>
       </div>
-      <div className={styles.links}><a href={detailLinks ? `/tools/prompt-${entry.id}` : `#${entry.id}`}>{detailLinks ? '单独查看 ↗' : '此卡片链接'}</a><span role="status" aria-live="polite">{status}</span></div>
+      <div className={styles.links}><a href={detailLinks ? `/tools/prompt-${entry.id}` : `#${entry.id}`}>{detailLinks ? '单独查看 ↗' : '此卡片链接'}</a>{detail && ['video', 'learn', 'clarify'].includes(entry.id) && <a href={`/tools/prompt-builder?scene=${entry.id}`}>按我的需求整理 ↗</a>}<span role="status" aria-live="polite">{status}</span></div>
     </div>
   </article>;
 }

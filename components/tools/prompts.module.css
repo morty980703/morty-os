@@ -36,7 +36,7 @@
 .actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:5px}
 .actions>a{font-size:11px;color:var(--muted)}
 .actions button{display:flex;justify-content:space-between;align-items:center;gap:20px;flex:none;border:0;border-radius:8px;background:var(--accent);color:white;font-size:12px;padding:10px 14px;cursor:pointer}
-.links{display:flex;align-items:baseline;justify-content:space-between;gap:10px;min-height:18px;margin-top:10px;font-size:10px;color:var(--muted)}.links>a{color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px;min-height:18px;margin-top:10px;font-size:10px;color:var(--muted)}.links>a{color:var(--muted)}
 .links [role=status]{color:var(--ink);text-align:right}
 .card a:hover{text-decoration:underline}.card button:focus-visible,.card summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 :global(html[data-theme=dark]) .card{--scene-bg:#25313d;--scene-ink:#d6e4f0;--accent:#80b9ff;--on-accent:#1c252e;--bubble:#334455;--soft:#a4b5c5;background:#22252a}
