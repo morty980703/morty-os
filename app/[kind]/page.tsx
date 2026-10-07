@@ -57,6 +57,7 @@ export default async function Index({ params, searchParams }: {
     <div aria-live="polite">
       {results.length === 0 ? <p className="empty">没有匹配的内容。<Link href={`/${kind}`}>清除筛选 ↗</Link></p> :
         kind === 'tools' && category === 'prompt' ? <>
+          <p className={styles.note}><Link href="/tools/prompt-builder">把你的需求整理成提示词 ↗</Link> · 选场景、补条件，再复制使用。</p>
           <p className={styles.note}>{promptNotice}</p>
           <PromptCards entries={prompts.filter(p => results.some(e => e.slug === `prompt-${p.id}`))} detailLinks />
         </> : kind === 'notes' ? <>

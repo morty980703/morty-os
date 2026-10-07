@@ -1,0 +1,44 @@
+.preview{--panel:#fff;--inset:#f3f4f6;--accent:#0067cc;max-width:1040px;margin:38px auto 56px}
+.preview h1{font-size:clamp(28px,3.2vw,42px);letter-spacing:-1px;margin:14px 0 12px}
+.intro{font-size:15px;margin-bottom:28px;color:var(--muted)}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel)}
+.inputPanel,.resultPanel{padding:26px;min-width:0}
+.inputPanel{border-right:1px solid var(--line)}
+.scenes,.conditions{border:0;padding:0;margin:0;min-width:0}
+.scenes legend,.conditions legend,.resultHeading h2{font-size:13px;font-weight:650;letter-spacing:0;margin:0 0 14px;color:var(--ink)}
+.scenes>div{display:flex;gap:8px}
+.scenes button{flex:1;border:1px solid var(--line);padding:9px 8px;border-radius:8px;background:var(--panel);color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+.scenes button[aria-pressed=true]{border-color:var(--accent);background:#edf4ff;color:var(--accent)}
+.hint{font-size:12px;margin:10px 0 20px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:7px;font-size:13px;margin-bottom:14px;color:var(--ink)}
+.field textarea,.field input,.output{width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:11px 12px;background:var(--inset);color:var(--ink);font:inherit;font-size:14px;line-height:1.7;box-shadow:none}
+.field textarea{resize:vertical;min-height:96px}
+.field input{height:44px}
+.preview textarea::placeholder,.preview input::placeholder{color:var(--muted);opacity:1}
+.preview textarea:focus-visible,.preview button:focus-visible,.preview input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.example{border:0;background:transparent;padding:0;font-size:12px;color:var(--accent);cursor:pointer;margin:-3px 0 24px}
+.conditions legend span{font-weight:400;color:var(--muted);margin-left:8px}
+.primary{display:inline-flex;justify-content:center;align-items:center;gap:16px;border:0;border-radius:8px;background:var(--accent);color:#fff;font:inherit;font-size:14px;font-weight:600;padding:11px 16px;cursor:pointer}
+.inputPanel>.primary{width:100%;margin-top:4px}
+.primary:disabled{background:var(--inset);color:var(--muted);cursor:default}
+.resultPanel{display:flex;flex-direction:column;background:var(--inset)}
+.resultHeading{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.resultHeading>span{font-size:11px;color:var(--muted)}
+.waiting{font-size:14px;color:var(--muted);line-height:1.7;margin:4px 0 12px}
+.output{background:var(--panel);flex:1;min-height:280px;resize:vertical;white-space:pre-wrap}
+.usage{font-size:12px;color:var(--muted);line-height:1.7;margin:12px 0 0}
+.resultActions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.resultActions>span{font-size:12px;color:var(--muted);min-width:0}
+.resultActions button{flex-shrink:0}
+.source{font-size:12px;margin-top:20px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted)}
+.source summary{cursor:pointer;color:var(--ink)}
+.source p{margin:12px 0 0;color:var(--muted);line-height:1.7}
+.source>div{display:flex;flex-wrap:wrap;gap:20px;margin-top:12px}
+.source a,.back{color:var(--accent);font-size:13px}
+.note{font-size:12px;margin:16px 0 8px;color:var(--muted)}
+:global(html[data-theme=dark]) .preview{--panel:#222225;--inset:#2c2c31;--accent:#80b9ff}
+:global(html[data-theme=dark]) .scenes button[aria-pressed=true]{background:#26384d}
+:global(html[data-theme=dark]) .preview .primary{color:#172536}
+:global(html[data-theme=dark]) .preview .primary:disabled{color:var(--muted)}
+:global(html[data-theme=dark]) .preview .hint,:global(html[data-theme=dark]) .preview .note,:global(html[data-theme=dark]) .preview .intro,:global(html[data-theme=dark]) .preview .source p{color:var(--muted)}
+@media(max-width:760px){.preview{margin:24px auto 40px}.workspace{grid-template-columns:minmax(0,1fr)}.inputPanel,.resultPanel{padding:20px}.inputPanel{border-right:0;border-bottom:1px solid var(--line)}.output{min-height:300px}.scenes button{font-size:12px}.resultActions{align-items:flex-start}.resultHeading{flex-wrap:wrap}.intro{margin-bottom:20px}}
