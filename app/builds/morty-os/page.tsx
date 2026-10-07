@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { siteURL } from '../../../lib/site';
-export const metadata = { title: 'Morty OS — 项目记录', description: 'Morty OS 已实现的内容浏览、技能与提示词分享、搜索、移动适配，以及当前验证与源码状态。' };
+export const metadata = { title: 'Morty OS — 项目记录', description: 'Morty OS 已实现的技能与提示词分享、本地模板提示词整理器、搜索、移动适配，以及当前验证与源码状态。' };
 export default function Project() {
   return <article className="article">
     <Link className="eyebrow" href="/builds">← 全部项目</Link>
-    <div className="eyebrow article-meta">首版已发布 · 更新于 2026-10-04</div>
+    <div className="eyebrow article-meta">首版已发布 · 更新于 2026-10-07</div>
     <h1>Morty OS</h1>
     <p className="lead">一个分享工具、AI 用法和实践记录的个人网站。从能浏览的内容开始，把用途、来源与当前状态讲清楚。</p>
     <div className="prose">
@@ -12,6 +12,7 @@ export default function Project() {
       <ul>
         <li>浏览 5 项第三方技能，了解用途、使用条件和来源，复制各自的安装命令；Ponytail 另有作者测试对比。</li>
         <li>探索 6 个社区提示词案例，查看问法示意、使用反馈和原文；填写所需信息后复制使用。</li>
+        <li>使用本站的<Link className="text-link" href="/tools/prompt-builder">提示词整理器</Link>，选择整理资料、学习知识或梳理想法，补充需求和条件，再复制到常用的 AI 对话中。它使用固定本地模板，不调用 AI 模型，也不提交输入。</li>
         <li>按分类、关键词、主题或标签查找内容，阅读项目记录与实践笔记。</li>
         <li>在手机和桌面浏览，切换浅色／深色主题。</li>
       </ul>
@@ -26,6 +27,7 @@ export default function Project() {
         <li>2026-10-04：补充本站项目与实践文章，分开博客的实践内容和草稿，整理关于页。</li>
         <li>2026-10-04：通过内容与视觉审核，在 Vercel 发布第一版网站。</li>
         <li>2026-10-04：按六个维度筛选第三方技能，补充 Agent Reach、宝玉翻译、文章排版和归藏 PPT；统一为简洁文字标题，作者头像放入来源说明。</li>
+        <li>2026-10-07：上线本地模板提示词整理器，接入工具分类、搜索和提示词板块，支持三种场景与复制使用。</li>
       </ul>
       <h2>实现与验证</h2>
       <p>内容保存在本地文件中，页面使用 Next.js、TypeScript 和 MDX。站点已完成代码检查、类型检查、生产构建，以及页面链接、复制操作、搜索和手机／桌面深浅主题检查。</p>
