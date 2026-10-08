@@ -5,7 +5,7 @@ export const metadata = { title: 'Morty OS — 项目记录', description: 'Mort
 export default function Project() {
   return <article className="article">
     <Link className="eyebrow" href="/builds">← 全部项目</Link>
-    <div className="eyebrow article-meta">首版已发布 · 更新于 2026-10-07</div>
+    <div className="eyebrow article-meta">首版已发布 · 更新于 2026-10-08</div>
     <h1>Morty OS</h1>
     <p className="lead">一个分享工具、AI 用法和实践记录的个人网站。从能浏览的内容开始，把用途、来源与当前状态讲清楚。</p>
     <div className="prose">
@@ -29,6 +29,7 @@ export default function Project() {
         <li>2026-10-04：通过内容与视觉审核，在 Vercel 发布第一版网站。</li>
         <li>2026-10-04：按六个维度筛选第三方技能，补充 Agent Reach、宝玉翻译、文章排版和归藏 PPT；统一为简洁文字标题，作者头像放入来源说明。</li>
         <li>2026-10-07：上线本地模板提示词整理器，接入工具分类、搜索和提示词板块，支持三种场景与复制使用。</li>
+        <li>2026-10-08：上线 Morty 分享的会话整理提示词，支持仅 Codex、仅 ChatGPT 与双边三种范围。</li>
       </ul>
       <h2>实现与验证</h2>
       <p>内容保存在本地文件中，页面使用 Next.js、TypeScript 和 MDX。站点已完成代码检查、类型检查、生产构建，以及页面链接、复制操作、搜索和手机／桌面深浅主题检查。</p>
@@ -40,6 +41,6 @@ export default function Project() {
       <h2>后续迭代</h2>
       <p>下一步补齐内容的使用说明，再根据实际反馈迭代。访客试用暂时后置；自定义域名仍待确认，个人资料与监控器证据继续保留待补充标记。</p>
     </div>
-    <aside className="relations"><Link href="/notes/building-an-honest-homepage">相关笔记 · 还没有落地工具，个人网站应该展示什么？ ↗</Link><Link href="/notes/choosing-your-first-skill">使用笔记 · 第一次选 AI 技能 ↗</Link><Link href="/tools?category=skill">查看技能 ↗</Link><Link href="/tools?category=prompt">查看提示词用法 ↗</Link><Link href="/">回到首页 ↗</Link></aside>
+    <aside className="relations"><Link href="/notes/building-an-honest-homepage">相关笔记 · 还没有落地工具，个人网站应该展示什么？ ↗</Link><Link href="/notes/choosing-your-first-skill">使用笔记 · 第一次选 AI 技能 ↗</Link><Link href="/notes/ask-before-changing">提示词笔记 · 先给方案，确认后执行 ↗</Link><Link href="/tools?category=skill">查看技能 ↗</Link><Link href="/tools?category=prompt">查看提示词用法 ↗</Link><Link href="/">回到首页 ↗</Link></aside>
   </article>;
 }

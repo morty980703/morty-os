@@ -4,7 +4,8 @@ import { entries } from '../lib/content';
 import PonytailAvatar from '../components/tools/ponytail-avatar';
 export default function Home() {
   const skillCount = entries.filter(e => e.kind === 'tools' && 'category' in e && e.category === 'skill').length;
-  const featuredNotes = ['choosing-your-first-skill', 'building-an-honest-homepage'].map(slug => entries.find(e => e.kind === 'notes' && e.slug === slug && 'editorialStatus' in e && e.editorialStatus === 'ready')).filter(e => e !== undefined);
+  const latestShare = prompts.find(p => p.id === 'conversation-organizer');
+  const featuredNotes = ['ask-before-changing', 'choosing-your-first-skill'].map(slug => entries.find(e => e.kind === 'notes' && e.slug === slug && 'editorialStatus' in e && e.editorialStatus === 'ready')).filter(e => e !== undefined);
   return <div className="home-v2">
   <section className="intro">
     <span className="eyebrow">MORTY OS · AI × REAL BUSINESS</span>
@@ -23,9 +24,10 @@ export default function Home() {
           <span className="prompt-direction" aria-hidden="true">→</span>
           <div className="prompt-after"><span>整理成提示词</span><p>补上基础和目标，复制到 AI 对话。</p></div>
         </div></figure>
-        <div className="home-tool-links"><Link className="text-link" href="/tools/prompt-builder">按我的需求整理 ↗</Link><Link className="text-link" href="/tools?category=prompt">参考社区案例 ↗</Link></div>
+        <div className="home-tool-links"><Link className="text-link" href="/tools/prompt-builder">按我的需求整理 ↗</Link><Link className="text-link" href="/tools?category=prompt">参考分享案例 ↗</Link></div>
       </article>
     </div>
+    {latestShare && <aside className="home-latest-share" aria-label="最新分享"><span className="eyebrow">最新分享 · {latestShare.sharedBy}</span><Link className="text-link" href={`/tools/prompt-${latestShare.id}`}>{latestShare.title} ↗</Link></aside>}
     <div className="home-tool-links"><Link className="text-link" href="/tools?category=skill">浏览 {skillCount} 项技能 ↗</Link><Link className="text-link" href="/tools?category=prompt">探索 {prompts.length} 个提示词用法 ↗</Link></div>
   </section>
   <section id="projects" className="home-section"><div className="home-heading"><div><span className="eyebrow">PROJECTS</span><h2>已经做出来的。</h2></div><Link className="text-link" href="/builds">全部项目 ↗</Link></div><Link className="project-tile featured-project" href="/builds/morty-os"><div><span className="badge">首版已发布</span><h3>Morty OS</h3><p>分享工具、AI 用法与实践记录的个人网站。已上线技能与提示词分享、本地模板提示词整理器、内容搜索，并适配手机与桌面。</p><span className="text-link">查看实现与当前状态 ↗</span></div><div className="project-facts"><span>已实现</span><strong>提示词整理 / 搜索 / 移动适配</strong><span>当前阶段</span><strong>首版上线，持续迭代</strong></div></Link></section>
