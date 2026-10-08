@@ -1,13 +1,14 @@
 export type PromptEntry = {
   id: string; title: string; summary: string; kind: string; credit: string; prompt: string;
   scene: { before: string; after: string; goal: string };
-  image?: string; source: string; conditions?: string; checkedOn?: string;
+  image?: string; source: string; conditions?: string; checkedOn: string;
   feedback: { heat: string; text: string; by: string; url: string };
   fields?: { marker: string; label: string; placeholder: string }[];
 };
 export const prompts: PromptEntry[] = [
   {
     "id": "clarify",
+    checkedOn: '2026-10-03',
     "scene": { "before": "这件事到底该怎么办？", "after": "先问清情况，一次只问一个问题。", "goal": "把问题，一步步问清楚。" },
     "title": "卡住了，让 AI 帮你换个思路",
     "summary": "已经试过不少办法？先让 AI 问清情况，再找新方向。",
@@ -37,6 +38,7 @@ export const prompts: PromptEntry[] = [
   },
   {
     "id": "video",
+    checkedOn: '2026-10-03',
     "scene": { "before": "长视频，要从头看到尾吗？", "after": "先总结文字稿，再决定细看哪里。", "goal": "先抓重点，再看细节。" },
     "title": "长视频，先看文字摘要",
     "summary": "把视频文字稿交给 AI，先判断哪些内容值得细看。",
@@ -54,6 +56,7 @@ export const prompts: PromptEntry[] = [
   },
   {
     "id": "learn",
+    checkedOn: '2026-10-03',
     "scene": { "before": "给我解释一下这个概念。", "after": "听听我的理解，追问遗漏和误区。", "goal": "让理解，经得起追问。" },
     "title": "用问答，检查自己有没有懂",
     "summary": "从你的理解出发，让 AI 追问并指出遗漏和误解。",
@@ -78,6 +81,7 @@ export const prompts: PromptEntry[] = [
   },
   {
     "id": "story",
+    checkedOn: '2026-10-03',
     "scene": { "before": "帮我看看这个故事。", "after": "站在读者角度，问出情节里的漏洞。", "goal": "借读者的眼睛，查漏。" },
     "title": "从读者视角，找故事里的漏洞",
     "summary": "检查情节是否说得通，人物与前后设定是否一致。",
@@ -95,6 +99,7 @@ export const prompts: PromptEntry[] = [
   },
   {
     "id": "alternative",
+    checkedOn: '2026-10-03',
     "scene": { "before": "还有什么办法？", "after": "看看不符合直觉的选择。", "goal": "给思路，留一个转弯。" },
     "title": "常规办法之外，还有什么选择",
     "summary": "建议总是差不多？试着让 AI 提出不那么直觉的做法。",
@@ -119,6 +124,7 @@ export const prompts: PromptEntry[] = [
   },
   {
     "id": "creative",
+    checkedOn: '2026-10-03',
     "scene": { "before": "不知道画什么。", "after": "让 AI 自行选择主题、风格与构图。", "goal": "把画面的决定权，交给 AI。" },
     "title": "让 AI 自己构思一张奇想画面",
     "summary": "没有具体题材时，让 AI 自由选择主题与构图，探索视觉灵感。",
