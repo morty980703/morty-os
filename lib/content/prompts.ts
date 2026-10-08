@@ -1,7 +1,7 @@
 export type PromptEntry = {
   id: string; title: string; summary: string; kind: string; credit: string; prompt: string;
   scene: { before: string; after: string; goal: string };
-  image?: string; source: string; conditions?: string;
+  image?: string; source: string; conditions?: string; checkedOn?: string;
   feedback: { heat: string; text: string; by: string; url: string };
   fields?: { marker: string; label: string; placeholder: string }[];
 };
@@ -134,7 +134,48 @@ export const prompts: PromptEntry[] = [
     },
     "conditions": "需要支持图片生成的 AI。原帖展示 ChatGPT 结果，评论中作者称使用 Astra；具体版本与参数未完整公开。",
     "source": "https://www.reddit.com/r/ChatGPT/comments/1wfk52a/i_gave_chatgpt_complete_creative_freedom_and_one/"
+  },
+  {
+    id: 'email',
+    scene: { before: '帮我把邮件写得专业一点。', after: '交代沟通目标，保留事实与承诺。', goal: '把话说清楚，也把分寸留住。' },
+    title: '邮件表达，清楚又有分寸',
+    summary: '整理已有草稿，让对方更容易读懂重点和下一步。',
+    kind: '邮件表达',
+    credit: '@Haunting_Fill_8110 · 中文精简，补充收件背景',
+    checkedOn: '2026-10-07',
+    prompt: '请把下面的邮件草稿改写得专业、友好、清楚，保持自然简洁。\n收件人与沟通目标：【收件人与目标】\n草稿：【邮件草稿】\n\n删去重复、含糊和生硬表达，按背景、重点、下一步整理；不要添加未提供的事实、承诺、价格、政策或日期。输出可供我核对的邮件正文，必要时附主题；若语气敏感，再给一个替代版本。',
+    fields: [
+      { marker: '【收件人与目标】', label: '收件人与目标', placeholder: '例如：合作伙伴，希望确认下一次沟通时间' },
+      { marker: '【邮件草稿】', label: '已有邮件草稿', placeholder: '粘贴一段简短草稿；长文可在复制后补充' },
+    ],
+    feedback: {
+      heat: '原帖赞同快照 136',
+      text: 'Middle_Efficiency471 评价这个用法有帮助，但未展示结果；另有评论认为专业、友好的短指令已经足够，不必使用长模板。',
+      by: 'Middle_Efficiency471 · 正向评价，未展示结果',
+      url: 'https://www.reddit.com/r/ChatGPTPromptGenius/comments/1u3wfp8/comment/orcy8wj/',
+    },
+    conditions: '基于作者原提示词精简，收件背景由本站补充；中文版本未实测。发送前核对事实、语气与承诺，敏感信息可先匿名化。',
+    source: 'https://www.reddit.com/r/ChatGPTPromptGenius/comments/1u3wfp8/this_email_prompt_has_saved_me_from_sending/',
+  },
+  {
+    id: 'assumptions',
+    scene: { before: '我这个判断靠谱吗？', after: '找出隐藏假设，再寻找相反证据。', goal: '先看看，自己漏掉了什么。' },
+    title: '做决定前，检查想当然',
+    summary: '找出判断里的隐藏假设，看看哪些信息可能推翻它。',
+    kind: '判断核查',
+    credit: '@Funny-Future6224 · 中文整理，补充核查条件',
+    checkedOn: '2026-10-07',
+    prompt: '我认为【当前判断】。这个判断包含哪些隐藏假设？哪些证据可能与它矛盾？\n\n请区分已有证据、待验证的假设与建议；信息不足时直接说明，不编造反证。',
+    fields: [{ marker: '【当前判断】', label: '当前判断', placeholder: '例如：每天发布内容，比每周认真写一篇更有效' }],
+    feedback: {
+      heat: '合集帖赞同快照 1,711',
+      text: 'AsterixBT 先表示尚未尝试，随后回复说用它探索了一个困扰自己的假设，对结果满意；没有展示完整对话或量化结果。',
+      by: 'AsterixBT · 使用自述',
+      url: 'https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jmlz3j/comment/ml31pki/',
+    },
+    conditions: '热度属于整篇提示词合集，不是这一条的效果评价。中文整理补充了事实与假设的区分；提出反证不等于找到了真实证据，仍需核对来源。',
+    source: 'https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jmlz3j/13_chatgpt_prompts_that_dramatically_improved_my/',
   }
 ];
 
-export const promptNotice = '方法示意与社区反馈分开展示 · 中文改编未实测 · 赞同分快照检索于 2026-10-03，非分享次数';
+export const promptNotice = '方法示意与社区反馈分开展示 · 中文改编未实测 · 热度为检索快照，非分享次数';

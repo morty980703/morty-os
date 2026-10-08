@@ -44,6 +44,7 @@ function PromptCard({ entry, index, detailLinks, detail }: { entry: PromptEntry;
         </div>}
         <pre className={styles.prompt}><code>{text}</code></pre>
         <p className={styles.credit}>{entry.credit}</p>
+        <p className={styles.credit}>来源检索：{entry.checkedOn || '2026-10-03'} · 热度为检索快照</p>
         {entry.conditions && <p className={styles.conditions}>{entry.conditions}</p>}
         <a className={styles.caption} href={entry.feedback.url} target="_blank" rel="noreferrer">{entry.feedback.by} ↗</a>
       </details>

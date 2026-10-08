@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { siteURL } from '../../../lib/site';
+import { prompts } from '../../../lib/content/prompts';
 export const metadata = { title: 'Morty OS — 项目记录', description: 'Morty OS 已实现的技能与提示词分享、本地模板提示词整理器、搜索、移动适配，以及当前验证与源码状态。' };
 export default function Project() {
   return <article className="article">
@@ -11,7 +12,7 @@ export default function Project() {
       <h2>现在可以做什么</h2>
       <ul>
         <li>浏览 5 项第三方技能，了解用途、使用条件和来源，复制各自的安装命令；Ponytail 另有作者测试对比。</li>
-        <li>探索 6 个社区提示词案例，查看问法示意、使用反馈和原文；填写所需信息后复制使用。</li>
+        <li>探索 {prompts.length} 个社区提示词案例，查看问法示意、使用反馈和原文；填写所需信息后复制使用。</li>
         <li>使用本站的<Link className="text-link" href="/tools/prompt-builder">提示词整理器</Link>，选择整理资料、学习知识或梳理想法，补充需求和条件，再复制到常用的 AI 对话中。它使用固定本地模板，不调用 AI 模型，也不提交输入。</li>
         <li>按分类、关键词、主题或标签查找内容，阅读项目记录与实践笔记。</li>
         <li>在手机和桌面浏览，切换浅色／深色主题。</li>
