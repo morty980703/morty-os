@@ -12,7 +12,7 @@ export default function Project() {
       <h2>现在可以做什么</h2>
       <ul>
         <li>浏览 5 项第三方技能，了解用途、使用条件和来源，复制各自的安装命令；Ponytail 另有作者测试对比。</li>
-        <li>探索 {prompts.length} 个社区提示词案例，查看问法示意、使用反馈和原文；填写所需信息后复制使用。</li>
+        <li>探索 {prompts.length} 个提示词用法，查看方法示意、来源与适用条件；社区反馈和 Morty 分享分别标注，选择范围或填写信息后复制使用。</li>
         <li>使用本站的<Link className="text-link" href="/tools/prompt-builder">提示词整理器</Link>，选择整理资料、学习知识或梳理想法，补充需求和条件，再复制到常用的 AI 对话中。它使用固定本地模板，不调用 AI 模型，也不提交输入。</li>
         <li>按分类、关键词、主题或标签查找内容，阅读项目记录与实践笔记。</li>
         <li>在手机和桌面浏览，切换浅色／深色主题。</li>

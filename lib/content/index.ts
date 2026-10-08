@@ -8,7 +8,7 @@ export const entries=[{kind:'tools',category:'app',slug:'prompt-builder',title:'
   {kind:'tools',category:'skill',slug:'ponytail',title:'Ponytail',summary:'让 AI 少绕弯，用简单方案减少不必要的 Token 消耗。提供安装命令与作者测试。',topic:'AI × 真实工作',tags:['Codex','技能','工作流'],label:'第三方技能'},
   {kind:'notes',slug:'choosing-your-first-skill',title:'第一次选 AI 技能，先看它能帮你少做什么',summary:'从本站这轮筛选出发，用六个问题判断是否适合，再从一个小任务开始使用。',topic:'AI × 真实工作',tags:['技能','AI 入门','筛选','使用方法'],editorialStatus:'ready',label:'实践文章'},
   ...skills.map(s=>({kind:'tools',category:'skill',slug:s.slug,title:s.title,summary:s.summary,topic:'AI × 真实工作',tags:['Codex','技能',s.name,...s.tags],label:'第三方技能'})),
-  ...prompts.map(p=>({kind:'tools',category:'prompt',slug:`prompt-${p.id}`,title:p.title,summary:p.summary,topic:'AI × 真实工作',tags:['提示词',p.kind],label:'社区用法 · 中文整理'}))
+  ...prompts.map(p=>({kind:'tools',category:'prompt',slug:`prompt-${p.id}`,title:p.title,summary:p.summary,topic:'AI × 真实工作',tags:['提示词',p.kind],label:p.sharedBy ? `${p.sharedBy} 分享` : '社区用法 · 中文整理'}))
 ];
 
 

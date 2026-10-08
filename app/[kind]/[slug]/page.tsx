@@ -26,7 +26,7 @@ export default async function Detail({ params }: { params: Promise<{ kind: strin
   if (kind === 'tools' && 'category' in e && e.category === 'prompt') {
     const prompt = prompts.find(p => `prompt-${p.id}` === slug);
     if (!prompt) notFound();
-    return <div className={styles.detail}><Link className="eyebrow" href="/tools?category=prompt">← 提示词 · 社区分享</Link><p className={styles.note}>{promptNotice}</p><PromptCards entries={[prompt]} detail /></div>;
+    return <div className={styles.detail}><Link className="eyebrow" href="/tools?category=prompt">← 提示词 · {prompt.sharedBy ? `${prompt.sharedBy} 分享` : '社区分享'}</Link><p className={styles.note}>{promptNotice}</p><PromptCards entries={[prompt]} detail /></div>;
   }
   return <article className="article">
     <Link className="eyebrow" href={`/${kind}`}>← {kind === 'notes' ? '全部文章' : kind === 'builds' ? '全部项目' : '全部工具'}</Link>

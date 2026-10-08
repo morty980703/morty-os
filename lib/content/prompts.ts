@@ -1,9 +1,10 @@
 export type PromptEntry = {
   id: string; title: string; summary: string; kind: string; credit: string; prompt: string;
-  scene: { before: string; after: string; goal: string };
+  scene: { before: string; after: string; goal: string; beforeLabel?: string; afterLabel?: string };
   image?: string; source: string; conditions?: string; checkedOn: string;
-  feedback: { heat: string; text: string; by: string; url: string };
-  fields?: { marker: string; label: string; placeholder: string }[];
+  sharedBy?: string;
+  feedback?: { heat: string; text: string; by: string; url: string };
+  fields?: { marker: string; label: string; placeholder: string; options?: { label: string; value: string }[] }[];
 };
 export const prompts: PromptEntry[] = [
   {
@@ -181,7 +182,86 @@ export const prompts: PromptEntry[] = [
     },
     conditions: '热度属于整篇提示词合集，不是这一条的效果评价。中文整理补充了事实与假设的区分；提出反证不等于找到了真实证据，仍需核对来源。',
     source: 'https://www.reddit.com/r/ChatGPTPromptGenius/comments/1jmlz3j/13_chatgpt_prompts_that_dramatically_improved_my/',
+  },
+  {
+    id: 'conversation-organizer',
+    title: '整理会话标题与归档建议',
+    summary: '整理 Codex／ChatGPT 的会话标题，先看归档建议，确认后再操作。',
+    kind: '会话整理',
+    sharedBy: 'Morty',
+    credit: 'Morty 分享 · 执行前需确认',
+    checkedOn: '2026-10-08',
+    scene: { before: '继续、帮我看看……找不到旧讨论。', after: '1008｜优化｜调整首页排版', goal: '让旧讨论，更容易找回来。', beforeLabel: '原标题', afterLabel: '命名示意' },
+    fields: [{ marker: '【整理范围】', label: '整理范围', placeholder: '选择平台', options: [
+      { label: '仅 Codex', value: 'Codex 会话（不包含 ChatGPT 聊天）' },
+      { label: '仅 ChatGPT', value: 'ChatGPT 聊天（不包含 Codex 会话）' },
+      { label: '两者都整理', value: 'Codex 会话和 ChatGPT 聊天' },
+    ] }],
+    prompt: `请整理我所有可访问的【整理范围】，包含标题规范化，以及一次性会话的归档建议。先检查并给出方案，等我确认后再执行，不删除任何会话。
+
+一、检查范围与能力
+
+- 分别检查所选平台是否支持读取会话、取得创建时间、重命名及归档
+- 一边能力不可用，不影响另一边生成建议；明确具体限制和未覆盖范围，不宣称已覆盖两边全部聊天
+- 按“平台＋稳定会话 ID”去重；同名会话不可视为同一条。无法可靠识别操作目标时，不执行修改
+- 不为了检查而临时改变归档、置顶、项目归属等状态，不输出对话正文
+
+二、标题命名规则
+
+- 日期使用 createdAt 或平台明确提供的等价创建时间，转换到 Asia/Shanghai 后取 MMDD；不得使用更新时间、最近消息时间、当前日期或标题中的日期代替
+- 格式统一为：MMDD｜分类｜主题。例如：1008｜优化｜调整首页排版
+- 分类仅使用：功能、设计、整顿、优化、发布、分析、文档。根据实际主要内容选择，不强行归类
+- 主题依据实际讨论或完成的事项概括，以中文为主，简短、具体
+- 确有项目归属的会话，不重复所属项目名称；普通聊天可保留必要的品牌、产品或业务名称，便于辨认
+- 无法取得创建时间、读取必要内容或可靠判断分类与主题时，保留原名，跳过改名并说明原因
+- 已符合规则且准确的标题保持不变
+- 建议标题重名时，用已核实的任务差异区分；无法可靠区分就列为待确认，不编造编号或内容
+
+三、一次性会话归档检阅
+
+- 根据实际内容判断问题是否已解决、是否仍有待办、未完成承诺、待确认决定或后续安排
+- 仍在推进、承担项目主线，或包含尚未整理到主线的重要独有信息的会话，优先保留
+- 已解决的一次性问答、已结束且没有后续依赖的执行记录，可以列为归档候选，并简述依据
+- 不仅凭标题、创建时间、低活跃度或内容相似就推荐归档；不把标题相似当作内容重复
+- 内容不足或状态不明确时，标记“待核实”，保持原状态
+- 缺少创建时间只影响改名；若内容充分，仍可独立评估归档，但不能自动执行
+- 已归档会话不主动恢复，也不为了读取或改名而临时取消归档
+
+四、先给方案，等待确认
+
+按所选平台分别输出：
+
+A. 改名对照：会话标识或链接、旧标题 → 建议标题
+B. 归档候选：会话标识或链接、当前标题、建议理由
+C. 保持不变、跳过或待核实的项目及原因
+
+- 改名和归档是两项独立操作；我确认改名不代表同意归档，反之亦然
+- 同一会话涉及两项操作时，分别标明；等待我明确确认操作及范围
+- 数量较多时分批展示，注明本批范围和剩余未检查范围，不因内容过多自行扩大执行范围
+
+五、执行与核验
+
+- 只执行我明确确认的操作和会话
+- 只使用应用提供的重命名、归档功能；不直接改写数据库或会话文件
+- 不修改项目名称、对话正文、项目归属、置顶，不主动调整排序，不删除或合并会话
+- 归档只允许将我确认的会话从未归档改为已归档，不进行其他状态变更
+- 执行前重新核对目标及状态；如果出现新消息、标题或状态变化，暂停受影响项，重新判断后再确认
+- 操作后重新读取标题或归档状态核验，仅把核验成功的计入实际完成数量
+- 失败或结果不确定时，先检查当前状态；无法核实时单独标记，不盲目重试
+- 如果平台操作会带来不可避免的其他状态变化，先说明，不擅自绕过限制
+
+六、完成汇报
+
+按所选平台分别汇报：
+
+- 实际检查数量与未覆盖范围
+- 核验成功的改名数量、归档数量
+- 保持不变、跳过、失败和结果不确定的项目及原因
+
+计数按会话去重，改名与归档分别统计，避免把同一会话算成两个已检查会话。不输出对话正文，也不把建议、尝试或未核验结果当作完成。`,
+    conditions: '网站只提供提示词复制，不读取或修改聊天。执行环境需具备相应平台的会话读取、重命名与归档能力。命名画面为方法示意，尚未做真实改名或归档测试。相似 GitHub 案例仅作为参考，不是本条提示词的使用反馈。',
+    source: 'https://gist.github.com/fz6m/6ccf3858c64af22b993f3c879f69f951',
   }
 ];
 
-export const promptNotice = '方法示意与社区反馈分开展示 · 中文改编未实测 · 热度为检索快照，非分享次数';
+export const promptNotice = '方法示意不等于实测结果 · 社区案例与 Morty 分享分别标注 · 热度为检索快照，非分享次数';

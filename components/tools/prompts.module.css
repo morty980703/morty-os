@@ -35,8 +35,8 @@
 .expand>summary::-webkit-details-marker{display:none}.expand>summary>span{font-size:17px;color:var(--muted)}.expand[open]>summary>span{transform:rotate(45deg)}
 .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:2px 0 10px}
 .fields label{display:block;min-width:0;font-size:12px}.fields label:only-child{grid-column:1/-1}
-.fields input{width:100%;margin-top:5px;padding:8px 9px;min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink);font-size:12px}
-.prompt{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.8 Consolas,"Microsoft YaHei",monospace;border-radius:8px;background:var(--scene-bg);color:var(--ink);padding:12px;margin:10px 0}
+.fields input,.fields select{width:100%;margin-top:5px;padding:8px 9px;min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink);font-size:12px}.fields select{min-height:44px}
+.prompt{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.8 Consolas,"Microsoft YaHei",monospace;border-radius:8px;background:var(--scene-bg);color:var(--ink);padding:12px;margin:10px 0;max-height:420px;overflow:auto}
 .credit,.conditions,.caption{font-size:11px;color:var(--muted);line-height:1.7;margin:7px 0 12px}
 .actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:5px}
 .actions>a{font-size:11px;color:var(--muted)}
